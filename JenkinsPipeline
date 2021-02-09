@@ -7,16 +7,7 @@ pipeline {
                 git branch: 'main',
                     credentialsId: '6ddedeae-b3e0-430c-9693-8043bb766835',
                     url: 'git@github.com:talknopf/PyHelloWorld.git'
-            }
-        }
-
-        stage('Run script') {
-            steps {
-                echo 'Building docker image..'
-                script {
-                    sh "python Hellow.py"
-                }
-                
+                sh "python Hellow.py"
             }
         }
         
