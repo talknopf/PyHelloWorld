@@ -1,16 +1,15 @@
 pipeline {
-    agent { label 'master'}
+    agent { label 'master' }
     stages {
         stage('Checkout repo') {
-            agent {
-                docker { image 'python' }
-            }
+            agent { label 'master' }
             steps {
                 git branch: 'main',
                     credentialsId: '6ddedeae-b3e0-430c-9693-8043bb766835',
                     url: 'git@github.com:talknopf/PyHelloWorld.git'
                 sh '''
-                    python -m pip install -f requirements.txt 
+                    source bin/activate
+                    bin/pip install -f requirements.txt 
                     python Hellow.py
                 '''
             }
